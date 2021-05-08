@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/gamestyles.css">
+    <script src="scripts/gameUtils.js"></script>
+    <script src="scripts/dragAndDropEventHandler.js"></script>
+    <script type="text/javascript" src="./models/country.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
+</head>
+<header class="container text-center">
+    <h1>
+    <div id="score" user-current-source="0">Score: 0</div>
+</h1>
+</header> 
+<body>
+    <div id="container">
+        <div class="top left">
+            <canvas id="imageCategory1"  ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="onDragEnter(event)"></canvas>
+        </div>
+       
+        <div class="top right"> 
+        <canvas id="imageCategory2"  ondrop="drop(event)" ondragover="allowDrop(event)"></canvas>
+       </div>
+       
+       <div class="center" id="image-placeholder">
+        <img id="image-to-identify" class="gamebtn" src="/images/kid.png" draggable="true" ondragstart="drag(event)">    
+       </div>
+
+        <div class="bottom left">
+        <canvas id="imageCategory3"  ondrop="drop(event)" ondragover="allowDrop(event)"></canvas>
+       </div>
+
+       <div class="bottom right">
+        <canvas id="imageCategory4" class="bottom right" ondrop="drop(event)" ondragover="allowDrop(event)"></canvas>
+       </div>
+    </div>
+ <title>Document</title>
+</body>
+<footer>
+    Footer
+</footer>
+</html>
