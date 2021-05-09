@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "anime": "^0.1.2"
+    "anime": "^0.1.2",
+    "config.json": "0.0.4",
+    "jquery": "^3.6.0"
   }
 }

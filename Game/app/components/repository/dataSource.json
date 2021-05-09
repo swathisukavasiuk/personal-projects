@@ -1,0 +1,17 @@
+{ "imageCategories": [
+    {"name":"Korean","id": "1"},
+    {"name":"Japanese","id": "2"},
+    {"name":"Thai","id":"3"},
+    {"name":"Chinese","id":"4"}
+    ],
+    "images": [
+        {"id": "100", "name":"image1.png","categoryId":"4"},
+        {"id": "108", "name":"image2.png","categoryId":"2"},
+        {"id": "500", "name":"image3.png","categoryId":"3"},
+        {"id": "600", "name":"image4.png","categoryId":"3"},
+        {"id": "100", "name":"image5.png","categoryId":"2"},
+        {"id": "108", "name":"image6.png","categoryId":"2"},
+        {"id": "500", "name":"image7.png","categoryId":"1"},
+        {"id": "600", "name":"image8.png","categoryId":"1"}
+        ]
+}

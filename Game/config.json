@@ -1,0 +1,12 @@
+{
+    "domain": "www.example.com",
+    "datasource": {
+      "url": "/app/components/dataSource/dataSource.json"
+    },
+
+    "imageconfiguration": 
+    {
+        "dropTime" : "3",
+        "numberOfImagesUsedPerGame": "10"
+    }
+  }

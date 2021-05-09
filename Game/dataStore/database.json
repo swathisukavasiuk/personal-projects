@@ -1,7 +1,0 @@
-{ "countries": [
-    {"name":"India","id":1},
-    {"name":"UK","id":2},
-    {"name":"China","id":3},
-    {"name":"Africa","id":4}
-    ]
-}
