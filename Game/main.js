@@ -22,25 +22,9 @@ $(document).ready(function () {
     dragAndDropHandler.allowDrop(event);
   });
 
-  //setTimeout(imageIdentificationservice.displayNextImage, 5000);
-
   setInterval(function () {
     gameInstance.displayNextImage();
     console.log("Image changed!");
   }, 4000);
-
-  // $("#startGame").click(function(event){
-
-  //});
-
-  var timerID = setTimeout(function() {
-    console.log('Runs in 3s');
-}, 3000);
-setTimeout(function() {
-    console.log('cancelling first timeout', timerID);
-    const a = 10;
-    clearTimeout(timerID);
-    return a;
-}, 2000);
 
 });
