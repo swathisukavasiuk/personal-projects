@@ -1,11 +1,13 @@
 class ImageIdentificationReposiry {
-
+  constructor(dataSourceUrl) {
+  this.dataSourceUrl = dataSourceUrl;
+  }
   //To get the Image Categories (Countries) from db(Json in this case) based on the configured value
   getImageCategories(imageCategoriesCount) {
     $.ajaxSetup({
       async: false
     });
-    var imageCategoriesJson = $.getJSON('./data/imageCategories.json').responseJSON.imageCategories;
+    var imageCategoriesJson = $.getJSON(this.dataSourceUrl + 'imageCategories.json').responseJSON.imageCategories;
 
     if (imageCategoriesJson.length >= imageCategoriesCount - 1) {
       var imageCategoryList = new Array();
@@ -17,12 +19,12 @@ class ImageIdentificationReposiry {
     console.error("No of categories in the db are lesser than expected");
   }
 
-    //To get the Images to drop from db (Json in this case) based on the configured values
+  //To get the Images to drop from db (Json in this case) based on the configured values
   getRandomImagesToGuess(imagesToGuessCount) {
     $.ajaxSetup({
       async: false
     });
-    var imagesJson = $.getJSON('./data/images.json').responseJSON.images;
+    var imagesJson = $.getJSON(this.dataSourceUrl + 'images.json').responseJSON.images;
 
     if (imagesJson.length >= imagesToGuessCount - 1) {
       var images = new Array();
@@ -36,14 +38,27 @@ class ImageIdentificationReposiry {
     console.error("No of images in the db are lesser than expected");
   }
 
-  getRandomElements(sourceArray, neededElements) {
-    var result = [];
-    for (var i = 0; i < neededElements; i++) {
-      var randomNumber = sourceArray[Math.floor(Math.random() * sourceArray.length)];
-      if (!result.includes(randomNumber))
-        result.push(randomNumber);
-      else i--;
+  //To get the category id of selected image
+  getImageCategoryId(imageId) {
+    $.ajaxSetup({
+      async: false
+    });
+    var imagesJson = $.getJSON(this.dataSourceUrl + 'images.json').responseJSON.images;
+    for (var i = 0; i < imagesJson.length; i++) {
+      if (imagesJson[i].id == imageId) {
+        return imagesJson[i].categoryId
+      }
     }
-    return result;
   };
+
+getRandomElements(sourceArray, neededElements) {
+  var result = [];
+  for (var i = 0; i < neededElements; i++) {
+    var randomNumber = sourceArray[Math.floor(Math.random() * sourceArray.length)];
+    if (!result.includes(randomNumber))
+      result.push(randomNumber);
+    else i--;
+  }
+  return result;
+};
 }

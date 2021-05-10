@@ -1,39 +1,40 @@
 class ImageIdentificationService {
-  constructor(imageIdentificationReposiry, randomImagesToGuess, imageCount ) {
-    this.imageIdentificationReposiry = new ImageIdentificationReposiry();
-    this.randomImagesToGuess = new Array();
-    this.imageCount = 0;
+
+  constructor(imageIdentificationReposiry) {
+    this.imageIdentificationReposiry = imageIdentificationReposiry;
   }
 
-  loadGameInstance() {
-    var imageCategories = this.imageIdentificationReposiry.getImageCategories(4);
-    this.randomImagesToGuess = this.imageIdentificationReposiry.getRandomImagesToGuess(6);
-    this.populateImageCategory(imageCategories);
-    this.displayNextImage();
+  getImageCategories(imageCategoriesCount) {
+    return this.imageIdentificationReposiry.getImageCategories(imageCategoriesCount);
   };
 
-  populateImageCategory(imageCategories) {
-    var canvas = document.getElementsByTagName("canvas");
-    var i = 0;
-    imageCategories.forEach(imageCategory => {
-      canvas[i].setAttribute("name", imageCategory.name);
-      canvas[i].setAttribute("categoryId", imageCategory.id);
-      var ctx = canvas[i].getContext("2d");
-      ctx.font = "30px Arial";
-      var gradient = ctx.createLinearGradient(0, 0, canvas[i].width, 0);
-     //gradient.addColorStop("0", "magenta");
-     //gradient.addColorStop("0.5", "Orange");
-     //gradient.addColorStop("1.0", "red");
-     //ctx.fillStyle = gradient;
-     //ctx.fillText(imageCategory.name, 60, 100);
-     ctx.strokeText(imageCategory.name, 60, 100);
-      i++;
-    });
+  getRandomImagesToGuess(imagesToGuessCount) {
+    return this.imageIdentificationReposiry.getRandomImagesToGuess(imagesToGuessCount);
   };
 
-   moveTheImageDown(){
+  calculateScore(imageId, selectedCategoryId, userCurrentScore, successpoints, failurePoints) {
+    return this.imageIdentificationReposiry.getImageCategoryId(imageId) == selectedCategoryId ? (parseInt(userCurrentScore) + parseInt(successpoints)) : (parseInt(userCurrentScore) - parseInt(failurePoints));
+  };
+
+  populateImageCategory(canvasElement, categoryName) {
+    var ctx = canvasElement.getContext("2d");
+    ctx.font = "30px Arial";
+    var gradient = ctx.createLinearGradient(0, 0, canvasElement.width, 0);
+    ctx.strokeText(categoryName, 60, 100);
+  };
+
+  displayImage(imagePlaceHolder, imageSrc, imageAtttributes, dropTime) {
+    var img = document.createElement("img");
+    this.setAttributes(img, imageAtttributes);
+    img.src = imageSrc;
+    var imagePlaceHolder = document.getElementById(imagePlaceHolder);
+    imagePlaceHolder.appendChild(img);
+    this.moveTheImageDown('img', dropTime);
+  };
+
+  moveTheImageDown(target, dropTime){
     var animation = anime({
-      targets: 'img',
+      targets: target,
       keyframes: [
         { translateY: 1000 },
       ],
@@ -43,55 +44,18 @@ class ImageIdentificationService {
     return anime;
   };
 
-  calculateScore(imageId, canvasId) {
-    var category = document.getElementById(canvasId);
-    var categoryId = category.getAttribute("categoryId");
-
-    var score = document.getElementById("score");
-    var currentScore = score.getAttribute("user-current-source");
-
-    if (this.getImageCategoryId(imageId) == categoryId) {
-      var result = parseInt(currentScore) + 20;
-      //this.createAudioEffect("success.wav");
-    }
-    else {
-      var result = parseInt(currentScore) - 5;
-      //this.createAudioEffect("failure.wav");
-    }
-
-    var currentScore = score.setAttribute("user-current-source", result);
-    score.innerHTML = "Score:" + result;
-  };
-
-  displayNextImage(){
-    if(this.imageCount < 7){
-      $("#gameOver").hide();
-    $('div#image-placeholder > img').remove();
-    var img = document.createElement("img");
-    img.setAttribute("id", this.randomImagesToGuess[this.imageCount].id);
-    img.src = "./app/resources/images/" + this.randomImagesToGuess[this.imageCount].name;
-    var imagePlaceHolder = document.getElementById("image-placeholder");
-    imagePlaceHolder.appendChild(img);
-    this.imageCount++;
-    this.moveTheImageDown();
-    }
-    else{
-       $("#gameOver").show();
+  setAttributes(element, attrs) {
+    for (var key in attrs) {
+      element.setAttribute(key, attrs[key]);
     }
   };
-
-  getImageCategoryId (imageId) {
-    for (var i = 0; i < this.randomImagesToGuess.length; i++) {
-      if (this.randomImagesToGuess[i].id === imageId) {
-        return this.randomImagesToGuess[i].imageCategoryId;
-      }
-    }
-  }
 
   createAudioEffec(audioName) {
     var myAudio = document.createElement('audio');
     myAudio.controls = true;
-    myAudio.src = '../resources/audio/' + audioName;
+   // myAudio.src = '../resources/audio/' + audioName;
     myAudio.play();
-  }
+  };
+
 }
+

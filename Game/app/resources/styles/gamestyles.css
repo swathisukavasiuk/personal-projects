@@ -22,6 +22,16 @@ canvas{
     border-color: white;
 }
 
+#game-over-container{
+    position:absolute;
+    height:50vh;
+    width:50vw;
+    border:2px solid;
+    background-color: rgb(136, 5, 114);
+    border-color: rgb(136, 5, 114);
+    justify-content: center;
+}
+
 
 .top {
     top: 0;

@@ -1,12 +1,16 @@
 {
-    "domain": "www.example.com",
     "datasource": {
-      "url": "/app/components/dataSource/dataSource.json"
+      "url": "./data/"
     },
-
-    "imageconfiguration": 
+    "imageConfiguration": 
     {
-        "dropTime" : "3",
-        "numberOfImagesUsedPerGame": "10"
+        "dropTime" : "20000",
+        "imageCount": "10",
+        "categoriesCount" : "4"
+    },
+    "score": 
+    {
+        "successPoints" : "20",
+        "failurePoints": "5"
     }
   }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,39 +8,51 @@
     <link rel="stylesheet" href="./app/resources/styles/gamestyles.css">
     <title>Document</title>
 </head>
+
 <body>
     <div id="container">
         <header class="text-center">
+    
+        </header>
+        <main>
+            <div class="top left">
+                <canvas id="imageCategory1"></canvas>
+            </div>
+
+            <div class="top right">
+                <canvas id="imageCategory2"></canvas>
+            </div>
+
+            <div style="text-align: center;" id="image-placeholder">
+                <img class="gamebtn" src="" draggable="true">
+            </div>
+            <div class="bottom left">
+                <canvas id="imageCategory3"></canvas>
+            </div>
+
+            <div class="bottom right">
+                <canvas id="imageCategory4"></canvas>
+            </div>
+        </main>
+        <footer class="bottom">
             <h1>
-            <div id="score" user-current-source="0">Score: 0</div>
-        </h1>
-        </header> 
-       <main>
-        <div class="top left">
-            <canvas id="imageCategory1"></canvas>
-        </div>
-       
-        <div class="top right"> 
-        <canvas id="imageCategory2"></canvas>
-       </div>
-       
-       <div style="text-align: center;" id="image-placeholder">
-        <img class="gamebtn" src="" draggable="true">    
-       </div>
+                <div id="score" user-current-source="0">Score: 0</div>
+            </h1>
+        </footer>
+    </div>
 
-       <div id="gameOver">
-        <div>Game Over</div>
-        <button>Play Again</button>   
-      </div>
-
-        <div class="bottom left">
-        <canvas id="imageCategory3"></canvas>
-       </div>
-
-       <div class="bottom right">
-        <canvas id="imageCategory4"></canvas>
-       </div>
-       </main>
+   
+    <div id="game-over-container">
+        <header class="text-center">
+            <h1>
+               <div style="text-align: center;">Game Over</div> 
+            </h1>
+        </header>
+        <main> 
+            <div style="text-align: center;" id="image-placeholder">
+                <button type="gamebtn" onClick="window.location.reload();">PLAY AGAIN</button>
+            </div>
+        </main>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -48,7 +61,8 @@
     <script src="./app/models/imageCategory.js"></script>
     <script src="./app/models/image.js"></script>
     <script src="./app/repository/ImageIdentificationReposiry.js"></script>
-    <script src="./app/services/dragAndDropEventHandler.js"></script>    
+    <script src="./app/services/dragAndDropEventHandler.js"></script>
+    <script src="./app/services/gameInstance.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
 </body>
 </html>
