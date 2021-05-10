@@ -1,0 +1,7 @@
+{ "imageCategories": [
+    {"name":"Korean","id": "1"},
+    {"name":"Japanese","id": "2"},
+    {"name":"Thai","id":"3"},
+    {"name":"Chinese","id":"4"}
+    ]
+}
